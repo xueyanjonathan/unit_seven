@@ -1,5 +1,5 @@
 # Jonathan Lin
-# 11/02/2018
+# 11/06/2018
 # The Vigenére Cipher
 # Modifying strings
 
@@ -19,25 +19,33 @@ def encode():
     keyword = input("Please enter the key string:")
     text_two = text.lower().replace(" ", "")
     keyword_two = keyword.lower().replace(" ", "")
-    text_converted = ""
+    text_converted = ""  # Create a blank list to be ready to be put numbers in
     for x in range(len(text_two)):
-        number = alphabet.index(text_two[x])
-        number_key = alphabet.index(keyword_two[x % len(keyword_two)])
+        # According to the length of the text,
+        # if during the addition the keyword is shorter than the text, it will repeat itself.
+        number = alphabet.index(text_two[x])  # Get the letters' values in the text
+        number_key = alphabet.index(keyword_two[x % len(keyword_two)])  # Get the letters' values in keyword
         converted_number = number + number_key
         text_converted = text_converted + alphabet[converted_number % 26]
+        # Convert the numbers back to letters.
+        # If the sum in addition is over 26, the remainder from dividing 26 will be the value to be converted.
     print(text_converted)
 
 
 def decode():
     text = input("Please enter text to be decoded:")
     keyword = input("Please enter the key string:")
-    keyword_two = keyword.lower().replace(" ", "")  # All letters are made lowercase and all spaces are eliminated.
-    text_converted = ""  # 
+    keyword_two = keyword.lower().replace(" ", "")
+    text_converted = ""  # Create a blank list to be ready to be put numbers in
     for x in range(len(text)):
-        number = alphabet.index(text[x])
-        number_key = alphabet.index(keyword_two[x % len(keyword_two)])
+        # According to the length of the text,
+        # if during the subtraction the keyword is shorter than the text, it will repeat itself.
+        number = alphabet.index(text[x])  # Get the letters' values in the text
+        number_key = alphabet.index(keyword_two[x % len(keyword_two)])  # Get the letters' values in keyword
         converted_number = number - number_key
-        text_converted = text_converted + alphabet[converted_number % 26]
+        text_converted = text_converted + alphabet[converted_number]
+        # Convert the numbers back to letters.
+        # If the product in subtraction is over 26, the remainder from dividing 26 will be the value to be converted.
     print(text_converted)
 
 
@@ -56,6 +64,3 @@ def main():
 
 
 main()
-
-
-
